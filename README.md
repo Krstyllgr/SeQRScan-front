@@ -1,27 +1,30 @@
 # SeQRScan-front
+sa folder na paglalagyan mo ng files ito iinstall tapos may mga files na malalagay delete mo na lang tapos lagay mo itong files na andito
 
-npx create-expo-app@latest --example with-router ./
+npx create-expo-app@latest --example with-router ./ 
 
-expo-cli --global
+libraries mga iimport
 
-@expo/vector-icons
+npm install expo-cli --global
 
-react-native-svg
+npm install @expo/vector-icons
 
-expo-status-bar
+npm install react-native-svg
 
-react-native-toast-message
+npm install expo-status-bar
 
-react-native-gesture-handler
+npm install react-native-toast-message
 
-@gorhom/bottom-sheet
+npm install react-native-gesture-handler
 
-expo-splash-screen
+npm install @gorhom/bottom-sheet
 
-expo-barcode-scanner
+npm install expo-splash-screen
 
-@react-native-community/slider
+npm install expo-barcode-scanner
 
-@react-navigation/bottom-tabs
+npm install @react-native-community/slider
 
-@react-navigation/stack
+npm install @react-navigation/bottom-tabs
+
+npm install @react-navigation/stack
