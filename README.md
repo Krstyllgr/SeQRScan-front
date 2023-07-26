@@ -1,6 +1,5 @@
 # SeQRScan-front
 
-//npm install
 expo-cli --global
 @expo/vector-icons
 react-native-svg
