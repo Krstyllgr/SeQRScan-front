@@ -28,3 +28,6 @@ npm install @react-native-community/slider
 npm install @react-navigation/bottom-tabs
 
 npm install @react-navigation/stack
+
+
+to start the app = npx expo start
