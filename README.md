@@ -31,3 +31,6 @@ npm install @react-navigation/stack
 
 
 to start the app = npx expo start
+
+to run on web = 
+npx expo install react-dom react-native-web @expo/webpack-config
