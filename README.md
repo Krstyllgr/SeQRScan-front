@@ -1,5 +1,7 @@
 # SeQRScan-front
 
+npx create-expo-app@latest --example with-router ./
+
 expo-cli --global
 
 @expo/vector-icons
