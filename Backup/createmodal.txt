@@ -1,0 +1,268 @@
+import React, {useState} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import {View, Text, TouchableOpacity, StyleSheet, TextInput, Image, Modal} from 'react-native';
+import Icon from '@expo/vector-icons/Ionicons';
+
+export default function Create() {
+    const  [shouldShow, setShouldShow] = useState(false);
+    const [isModalVisible, setisModalVisible] = useState(false);
+    const changeModalVisible = (bool) => {
+        setisModalVisible(bool);
+    }
+    return (
+         <View style={styles.containermain}>
+            <View style={styles.containersec}>
+            <Text style={styles.enter}>Enter your URL</Text>
+            </View>
+            <TextInput style={styles.urlinput} value={Text} placeholder='https:www.facebook.com/'/>
+
+            <View style={styles.buttons}>
+                <TouchableOpacity style={styles.gbutton} onPress={() => setShouldShow(true)}>
+                    <Icon name="qr-code-outline" size={15} color="#000" style={{ marginRight: 5, marginLeft: 15}}/>
+                    <Text style={styles.gtext}>
+                        Generate QR Code
+                    </Text> 
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.vbutton} onPress={() => setShouldShow(!setShouldShow)}>
+                    <Icon name="close-outline" size={15} color="#fff" style={{ marginRight: 5, marginLeft: 45}}/>
+                    <Text style={styles.vtext}>
+                        Clear
+                    </Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.generateqrcode}>
+                {
+                    shouldShow ? (
+                        <View style={styles.qrcontent}>
+                            <Text style={styles.generatetext}><Icon name="checkmark-done-outline" size={20} color="#000" style={{ marginRight: 5, marginLeft: 60}}/>Your QR code is ready</Text>
+                            <View style={styles.qrcontdes}>
+                                <Image style={styles.qrcodeimg} source={require('../assets/images/qrcode.png')}></Image>
+                                <View>
+                                    <Text style={styles.context}>Content</Text>
+                                    <Text style={styles.consmall}>QR code</Text>
+                                    <Text style={styles.dtext}>Description: </Text>
+                                    <TextInput style={styles.desc} value={Text} placeholder='Enter Description'></TextInput>
+                                </View>
+                            </View>
+                            <View style={styles.mcont}>
+                                <TouchableOpacity style={styles.dbutton} onPress={() => changeModalVisible(true)}>
+                                    <Icon name="download-outline" size={20} color="#000" style={{ marginRight: 5, marginLeft: 18}}/>
+                                    <Text style={styles.bttntext}>Download</Text>
+                                </TouchableOpacity>
+                                <Modal transparent={true} visible={isModalVisible} animationType='fade' nRequestClose={() => changeModalVisible(false)} >
+                                    <View style={styles.modalcontainer}>
+                                        <TextInput style={styles.size} placeholder='Enter Size (px)'></TextInput>
+                                        <TouchableOpacity style={styles.modaldl}><Text style={styles.mdlbttntext}>Download</Text></TouchableOpacity>
+                                    </View>
+                                </Modal>
+                                <TouchableOpacity style={styles.abutton}>
+                                    <Icon name="add-outline" size={20} color="#000" style={{ marginRight: 5, marginLeft: 25}}/>
+                                    <Text style={styles.bttntext}>Add</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    ) : null
+                }
+            </View>
+                
+        <StatusBar style='auto'/>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    containermain: {
+        height: 300,
+        backgroundColor: "#1B2223"
+    },
+    buttons: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: "4%"
+    },
+    containersec: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    mcont: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: "6%"
+    },
+    cbutton: {
+        left: 35,
+        top: 70
+    },
+    ctext: {
+        color: "#fff",
+        fontSize: 20,
+        fontWeight: "bold"
+    },
+    enter: {
+        fontSize: 13,
+        color: "#fff",
+        fontWeight: "900",
+        marginTop: 60,
+        marginLeft: 100,
+        marginRight: 100
+    },
+    urlinput:{
+        alignItems: "center",
+        backgroundColor: "#fff",
+        padding: 10,
+        width: 300,
+        marginTop: "10%",
+        marginLeft: 63,
+        borderRadius: 10,
+        color: "#000",
+        borderColor: "#000",
+        borderWidth: 0.5,
+    },
+    gbutton:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: "#00FF7F",
+        marginTop: 40,
+        borderRadius: 10,
+        width: "40%",
+        height: "70%",
+        marginLeft: "10%"
+    },
+    gtext:{
+        alignItems: "center",
+        fontWeight: "900"
+        
+    },
+    vbutton:{
+        backgroundColor: '#1E90FF',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 40,
+        borderRadius: 10,
+        Width: "40%",
+        height: "70%",
+        marginLeft: "3%"
+    },
+    vtext: {
+        fontWeight: "900",
+        color: "#fff",
+        marginRight: "12%"
+    },
+    generateqrcode: {
+        top: 50,
+        alignItems: "center",
+    },
+    qrcontent: {
+        alignContent: "center",
+        alignItems: "center",
+        marginTop: "3%"
+    },
+    generatetext: {
+        backgroundColor: "#00FF7F",
+        height: 60,
+        marginTop: "10%",
+        width: 300,
+        alignItems: "center",
+        color: "#000",
+        fontWeight: "900",
+        borderRadius: 10,
+        textAlign: "center",
+        paddingTop: 20,
+        
+    }, 
+    dbutton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignItems: "center",
+        backgroundColor: "#00FF7F",
+        top: 15,
+        height: 50,
+        textAlign: "center",
+        width: "30%",
+        borderRadius: 10,
+    },
+    abutton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: "#00FF7F",
+        padding: 8,
+        top: 15,
+        height: 50,
+        textAlign: "center",
+        width: "30%",
+        borderRadius: 10,
+        marginLeft: "5%"
+    },
+    qrcontdes: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+
+    },
+    qrcodeimg: {
+        height: 200,
+        width: 200,
+        backgroundColor: "#000",
+        marginTop: "8%",
+        marginRight: "2%"
+    }, 
+    context: {
+        fontWeight: "900",
+        fontSize: 15,
+        marginTop: 10
+    },
+    dtext: {
+        fontWeight: "900",
+        fontSize: 15,
+        color: "#660000",
+        marginTop: 10,
+    }, 
+    desc: {
+        borderBottomWidth: .5,
+        height: 30,
+        fontSize: 12,
+        width: "130%",
+        borderBottomColor: "#000000",
+    },
+    modalcontainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: "#1B2223",
+        margin: 50,
+        padding: 40,
+        top: 320,
+        borderRadius: 10,
+        justifyContent: "center",
+    },
+    size: {
+        fontSize: 15,
+        borderBottomColor: "#000000",
+        borderBottomWidth: 1,
+        height: 50,
+        width: "60%",
+        borderRadius: 8,
+        backgroundColor: "#FFFFFF",     
+        paddingLeft: 10,
+        marginRight: "10%"
+    },
+    modaldl: {
+        backgroundColor: "#00FF7F",
+        width: "35%",
+        borderRadius: 8,
+        height: 40,
+        paddingLeft: "1%"
+    },
+    mdlbttntext: {
+        padding: 11,
+        fontSize: 13,
+        fontWeight: "bold",
+    },
+    bttntext:{
+        fontWeight: '900'
+    },
+
+}
+
+);

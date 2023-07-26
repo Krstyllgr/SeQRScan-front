@@ -1,0 +1,57 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+import Create from './app/Create';
+import Scan from './app/Scan';
+import Gallery from './app/Gallery';
+import History from './app/History';
+import Account from  './app/Account';
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+
+        <Tab.Screen name='Scan' component={Scan} 
+        options={{tabBarIcon: ({ color, size }) => (
+        <Ionicons name="scan-circle-outline" color={color} size={size}/>
+            ),
+          }}
+        />
+
+        <Tab.Screen name='Gallery' component={Gallery}
+        options={{tabBarIcon: ({ color, size }) => (
+        <Ionicons name="images-outline" color={color} size={size}/>
+            ),
+          }}
+        />
+
+        <Tab.Screen name='Create' component={Create}
+        options={{tabBarIcon: ({ color, size }) => (
+        <Ionicons name="add-circle-outline" color={color} size={size}/>
+            ),
+          }}
+        />
+
+        <Tab.Screen name='History' component={History}
+        options={{tabBarIcon: ({ color, size }) => (
+        <Ionicons name="time-outline" color={color} size={size}/>
+            ),
+          }}
+        />
+
+        <Tab.Screen name='Account' component={Account}
+        options={{tabBarIcon: ({ color, size }) => (
+        <Ionicons name="person-outline" color={color} size={size}/>
+            ),
+          }}
+        />
+
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}

@@ -1,0 +1,182 @@
+import React, {useState} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View , Image,TouchableOpacity, Modal, TextInput} from 'react-native';
+import Icon from '@expo/vector-icons/Ionicons';
+
+export default function Gallery() {
+  const [isModalVisible, setisModalVisible] = useState(false);
+  const changeModalVisible = (bool) => {
+    setisModalVisible(bool);
+  }
+  const [isDelModalVisible, setisDelModalVisible] = useState(false);
+  const changeDelModalVisible = (bool) => {
+    setisDelModalVisible(bool);
+  }
+  return (
+    <View style={styles.container}>
+      <View style={styles.seccont}>
+        <View style={styles.qrcont}>
+          <Image style={styles.qrcodeimg} source={require('../assets/images/qrcode.png')}></Image>
+        </View>
+        <View style={styles.texts}>
+          <Text style={styles.bold}>Description: </Text>
+          <Text style={styles.small}>Facebook</Text>
+          <Text style={styles.bold}>Content: </Text>
+          <Text style={styles.small}>https://www.facebook.com</Text>
+          <Text style={styles.bold}>Created: </Text>
+          <Text style={styles.small}>07-11-25</Text>
+        </View>
+        <View style={styles.sidebttn}>
+          <TouchableOpacity style={styles.downbutton} onPress={() => changeModalVisible(true)}>
+            <Icon name="arrow-down-circle-outline" size={18} color="#000" style={{ marginTop: 25,}}/>
+          </TouchableOpacity>
+          <Modal transparent={true} visible={isModalVisible} animationType='fade' nRequestClose={() => changeModalVisible(false)} >
+              <View style={styles.modalcontainer}>
+                  <TextInput style={styles.size} placeholder='Enter Size (px)'></TextInput>
+                  <TouchableOpacity style={styles.modaldl}><Text style={styles.mdlbttntext}>Download</Text></TouchableOpacity>
+              </View>
+          </Modal>
+          <TouchableOpacity style={styles.delbutton} onPress={() => changeDelModalVisible(true)}>
+            <Icon name="close-circle-outline" size={18} color="#000" style={{ marginTop: 25}}/>
+          </TouchableOpacity>
+          <Modal transparent={true} visible={isDelModalVisible} animationType='fade' nRequestClose={() => changeDelModalVisible(false)} >
+              <View style={styles.modalcont}>
+                  <Text style={styles.deltext}>Are you sure you want to delete this QR code?</Text>
+                <View style={styles.delbttns}>
+                  <TouchableOpacity style={styles.cancelbttn} onPress={() => changeDelModalVisible(false)}><Text style={styles.canceltext}>Cancel</Text></TouchableOpacity>
+                  <TouchableOpacity style={styles.yesbttn}><Text style={styles.yestext}>Yes</Text></TouchableOpacity>
+                </View>
+              </View>
+          </Modal>
+        </View>
+      </View>
+
+      <StatusBar style="auto" />
+    </View>
+    
+  );
+}
+
+const styles = StyleSheet.create({/*F0FFFF*/
+  container: {
+    backgroundColor: '#fff',
+    height: "100%"
+  },
+  seccont: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: "23%",
+    marginLeft: "8%",
+    marginRight: "8%",
+    marginTop: "10%",
+    backgroundColor: '#F0F8FF',
+    borderRadius: 10,
+  },
+  qrcont: {
+    backgroundColor: '#fff',
+    left: "15%"
+  },
+  qrcodeimg: {
+    height: 120,
+    width: 120
+  },
+  texts: {
+    left: "22%"
+  },
+  bold:{
+    fontWeight: '900',
+    color: '#1E90FF',
+    fontSize: 18
+  },
+  small:{
+    fontSize: 12
+  },
+  sidebttn: {
+    left: "37.5%"
+  },
+  downbutton: {
+    backgroundColor: '#1E90FF',
+    height: "50%",
+    width: 37,
+    borderTopEndRadius: 10,
+    padding: 10
+  },
+  delbutton: {
+    backgroundColor: '#1E90FF',
+    height: "50%",
+    width: 37,
+    borderBottomRightRadius: 10,
+    padding: 10
+  },
+  modalcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor:"#000",
+    margin: 50,
+    padding: 40,
+    top: 320,
+    borderRadius: 10,
+    justifyContent: "center",
+  },
+  size:{
+    fontSize: 15,
+    borderBottomColor: "#000000",
+    borderBottomWidth: 1,
+    height: 50,
+    width: "60%",
+    borderRadius: 8,
+    backgroundColor: "#FFFFFF",     
+    paddingLeft: 10,
+    marginRight: "10%"
+  },
+  modaldl: {
+    backgroundColor: "#1E90FF",
+    width: "35%",
+    borderRadius: 8,
+    height: 40,
+    paddingLeft: "1%"
+  },
+  mdlbttntext: {
+    padding: 11,
+    fontSize: 13,
+    fontWeight: "bold",
+  },
+  modalcont:{
+    backgroundColor:"#000",
+    margin: 60,
+    padding: 20,
+    top: 320,
+    borderRadius: 10,
+  },
+  delbttns:{
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+  },
+  deltext:{
+    color: '#fff',
+    fontSize: 18
+  },
+  cancelbttn:{
+    padding: 12,
+    marginTop: '8%',
+    width: "30%"
+  },
+  canceltext:{
+    color: '#1E90FF',
+    fontSize: 18,
+    marginLeft: "8%"
+  },
+  yesbttn:{
+    padding: 12,
+    marginTop: '8%',
+    width: "30%"
+  },
+  yestext:{
+    color: '#1E90FF',
+    fontSize: 18,
+    marginLeft: "20%"
+  }
+
+
+
+})

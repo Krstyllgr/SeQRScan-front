@@ -1,0 +1,84 @@
+import {React} from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import 'react-native-gesture-handler';
+
+import ErrorScreen from './ErrorScreen';
+import SafeScreen from './SafeScreen'
+import TextScreen from './TextScreen';
+
+const ScanScreen = ({navigation}) => {
+    return (
+    <View style={styles.maincont}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.ebutton} onPress={() => navigation.navigate(ErrorScreen)}>
+          <Text style={styles.etext}>Error</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sbutton} onPress={() => navigation.navigate(SafeScreen)}>
+          <Text style={styles.stext}>Safe</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.mbutton} onPress={() => navigation.navigate(TextScreen)}>
+          <Text style={styles.mtext}>Text</Text>
+        </TouchableOpacity>
+
+        <StatusBar style='auto'/>
+    </View>
+    </View>
+    );
+}
+    
+
+const styles = StyleSheet.create({
+    maincont:{
+        backgroundColor: "#fff",
+        height: "100%"
+    },
+    container: {
+        alignItems: 'center',
+        top: 420,
+        flexDirection: 'row',
+    },
+    ebutton: {
+        backgroundColor: "red",
+        height: "100%",
+        width: "20%",
+        padding: "3%",
+        alignItems: 'center',
+        borderRadius: 5,
+        marginLeft: "10%",
+    },
+    sbutton: {
+        backgroundColor: "green",
+        height: "100%",
+        width: "20%",
+        padding: "3%",
+        alignItems: 'center',
+        borderRadius: 5,
+        marginLeft: "10%"
+    },
+    mbutton: {
+        backgroundColor: "blue",
+        height: "100%",
+        width: "20%",
+        padding: "3%",
+        alignItems: 'center',
+        borderRadius: 5,
+        marginLeft: "10%"
+    },
+    etext: {
+        fontSize: 25,
+        fontWeight: '900'
+    },
+    stext: {
+        fontSize: 25,
+        fontWeight: '900'
+    },
+    mtext: {
+        fontSize: 25,
+        fontWeight: '900'
+    }
+})
+
+export default ScanScreen;
+
+
